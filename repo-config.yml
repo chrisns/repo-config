@@ -1,7 +1,7 @@
 dependabot: "auto"
 repo:
   has_projects: false
-  as_wiki: false
+  has_wiki: false
   is_template: false
   allow_squash_merge: true
   allow_merge_commit: false
