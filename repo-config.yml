@@ -8,6 +8,16 @@ repo:
   allow_rebase_merge: true
   delete_branch_on_merge: true
 
+branchProtection:
+  - branch: '__DEFALT_BRANCH__'
+    required_status_checks:
+      strict: true
+      contexts: ALL
+    required_linear_history: true
+    enforce_admins: false
+    required_pull_request_reviews: null
+    restrictions: null
+
 vulnerabilityAlerts: true
 automatedSecurityFixes: true
 license: |
