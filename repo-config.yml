@@ -47,17 +47,18 @@ files:
   ".github/workflows/assign.yml": |
     name: 'Auto Assign'
     on: pull_request
-
     jobs:
       add-reviews:
         runs-on: ubuntu-latest
         steps:
           - uses: kentaro-m/auto-assign-action@v1.1.2
+
   ".github/auto_assign.yml": |
     addReviewers: false
     addAssignees: true
     assignees:
       - chrisns
+
   ".github/FUNDING.yml": |
     github: [chrisns]
     custom: ['https://www.paypal.me/cns']
