@@ -95,7 +95,7 @@ files:
             users:
               - chrisns
 
-
+  ".dependabot/config.yml": null
   ".github/workflows/assign.yml": null
 
   ".github/auto_assign.yml": |
