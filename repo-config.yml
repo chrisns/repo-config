@@ -17,13 +17,7 @@ branchProtection:
     enforce_admins: false
     required_pull_request_reviews:
       required_approving_review_count: 1
-    restrictions:
-      users:
-        - chrisns
-      teams:
-      apps:
-        - mergify
-
+    restrictions: null
 
 vulnerabilityAlerts: true
 automatedSecurityFixes: true
