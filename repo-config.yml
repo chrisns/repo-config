@@ -20,6 +20,7 @@ branchProtection:
     restrictions:
       users:
         - chrisns
+      teams:
       apps:
         - apps
 
