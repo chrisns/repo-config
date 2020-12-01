@@ -15,8 +15,14 @@ branchProtection:
       contexts: ALL
     required_linear_history: false
     enforce_admins: false
-    required_pull_request_reviews: 1
-    restrictions: null
+    required_pull_request_reviews:
+      required_approving_review_count: 1
+    restrictions:
+      users:
+        - chrisns
+       apps:
+        - apps
+
 
 vulnerabilityAlerts: true
 automatedSecurityFixes: true
