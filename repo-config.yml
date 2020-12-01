@@ -80,6 +80,7 @@ files:
 
       - name: assign to owner
         conditions:
+          - base=master
         actions:
           assign:
             users:
