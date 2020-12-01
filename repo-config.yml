@@ -22,7 +22,7 @@ branchProtection:
         - chrisns
       teams:
       apps:
-        - apps
+        - mergify
 
 
 vulnerabilityAlerts: true
