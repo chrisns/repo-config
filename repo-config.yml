@@ -97,7 +97,7 @@ files:
 
   ".dependabot/config.yml": null
   ".github/workflows/assign.yml": null
-
+  ".github/workflows/automerge.yml": null
   ".github/auto_assign.yml": |
     addReviewers: false
     addAssignees: true
