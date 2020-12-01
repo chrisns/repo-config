@@ -11,11 +11,11 @@ repo:
 branchProtection:
   - branch: '__DEFALT_BRANCH__'
     required_status_checks:
-      strict: true
+      strict: false
       contexts: ALL
-    required_linear_history: true
+    required_linear_history: false
     enforce_admins: false
-    required_pull_request_reviews: null
+    required_pull_request_reviews: 1
     restrictions: null
 
 vulnerabilityAlerts: true
