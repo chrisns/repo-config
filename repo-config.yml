@@ -55,7 +55,7 @@ files:
             method: rebase
             rebase_fallback: squash
 
-      - name: approve repomanager
+      - name: approve dependabot
         conditions:
           - author=dependabot[bot]
         actions:
@@ -76,7 +76,7 @@ files:
           - author=the-repository-manager[bot]
         actions:
           review:
-            message: auto approve dependabot
+            message: auto approve repomanager
 
       - name: assign failing to owner
         conditions:
