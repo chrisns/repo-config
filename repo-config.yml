@@ -15,9 +15,6 @@ branchProtection:
       contexts: ALL
     required_linear_history: false
     enforce_admins: false
-    required_pull_request_reviews: 
-      dismissal_restrictions:
-        - chrisns
     restrictions: null
 
 vulnerabilityAlerts: true
