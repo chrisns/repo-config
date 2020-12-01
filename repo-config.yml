@@ -16,6 +16,7 @@ branchProtection:
     required_linear_history: false
     enforce_admins: false
     restrictions: null
+    required_pull_request_reviews: null
 
 vulnerabilityAlerts: true
 automatedSecurityFixes: true
