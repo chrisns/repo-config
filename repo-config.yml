@@ -23,7 +23,7 @@ automatedSecurityFixes: true
 license: |
   MIT License
 
-  Copyright (c) 2020 Chris Nesbitt-Smith
+  Copyright (c) 2021 Chris Nesbitt-Smith
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -48,7 +48,6 @@ files:
     pull_request_rules:
       - name: automatic merge dependabot
         conditions:
-          - base=master
           - author=dependabot[bot]
         actions:
           merge:
@@ -60,11 +59,10 @@ files:
           - author=dependabot[bot]
         actions:
           review:
-            message: auto approve dependabot
+            type: APPROVE
 
       - name: automatic merge repomanager
         conditions:
-          - base=master
           - author=the-repository-manager[bot]
         actions:
           merge:
@@ -80,7 +78,7 @@ files:
 
       - name: assign to owner
         conditions:
-          - base=master
+          - check-failure>1
         actions:
           assign:
             users:
