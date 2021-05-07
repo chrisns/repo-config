@@ -13,7 +13,7 @@ branchProtection:
     required_status_checks:
       strict: false
       contexts: ALL
-    required_linear_history: false
+    required_linear_history: true
     enforce_admins: false
     restrictions: null
     required_pull_request_reviews: null
