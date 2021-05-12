@@ -98,6 +98,9 @@ files:
     name: "Security Scanning"
     on:
       push:
+        branches: [main, master]
+      pull_request:
+        branches: [main, master]
     jobs:
       CodeQL:
         name: CodeQL
