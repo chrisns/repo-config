@@ -84,11 +84,7 @@ files:
             users:
               - chrisns
 
-  ".github/auto_assign.yml": |
-    addReviewers: false
-    addAssignees: true
-    assignees:
-      - chrisns
+  ".github/auto_assign.yml": null
 
   ".github/FUNDING.yml": |
     github: [chrisns]
