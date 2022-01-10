@@ -47,21 +47,6 @@ license: |
 files:
   ".github/mergify.yml": |
     pull_request_rules:
-      - name: automatic merge dependabot
-        conditions:
-          - author=dependabot[bot]
-        actions:
-          merge:
-            method: rebase
-            rebase_fallback: squash
-
-      - name: approve dependabot
-        conditions:
-          - author=dependabot[bot]
-        actions:
-          review:
-            type: APPROVE
-
       - name: automatic merge repomanager
         conditions:
           - author=the-repository-manager[bot]
@@ -69,14 +54,6 @@ files:
           merge:
             method: rebase
             rebase_fallback: squash
-
-      - name: approve repomanager
-        conditions:
-          - author=the-repository-manager[bot]
-        actions:
-          review:
-            message: auto approve repomanager
-
       - name: assign to owner
         conditions:
           - check-failure>1
@@ -89,10 +66,16 @@ files:
   ".github/renovate.json5": |
     {
       "extends": [
-        "config:base"
-      ]
-    }
-
+        "config:base",
+        "workarounds:typesNodeVersioning"
+      ],
+      "automerge": true,
+      "platformAutomerge": true,
+      "lockFileMaintenance": { "enabled": true },
+      "pinDigests": true,
+      "rollbackPrs": true,
+      "assignees": ["chrisns"]
+     }
   ".github/FUNDING.yml": |
     github: [chrisns]
     custom: ['https://www.paypal.me/cns']
