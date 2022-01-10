@@ -1,4 +1,4 @@
-dependabot: "auto"
+dependabot: false,
 repo:
   has_projects: false
   has_wiki: false
@@ -45,6 +45,7 @@ license: |
   SOFTWARE.
 
 files:
+  ".github/dependabot.yml": null,
   ".github/mergify.yml": |
     pull_request_rules:
       - name: automatic merge repomanager
