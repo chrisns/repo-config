@@ -44,7 +44,6 @@ license: |
   SOFTWARE.
 
 files:
-  ".github/dependabot.yml": null,
   ".github/mergify.yml": |
     pull_request_rules:
       - name: automatic merge repomanager
