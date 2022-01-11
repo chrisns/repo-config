@@ -7,7 +7,7 @@
   "platformAutomerge": true,
   "lockFileMaintenance": { "enabled": true },
   "pinDigests": true,
-  "rollbackPrs": true,
   "dependencyDashboard": false,
+  "rollbackPrs": true,
   "assignees": ["chrisns"]
  }
