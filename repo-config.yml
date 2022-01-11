@@ -53,13 +53,6 @@ files:
           merge:
             method: rebase
             rebase_fallback: squash
-      - name: assign to owner
-        conditions:
-          - check-failure>1
-        actions:
-          assign:
-            users:
-              - chrisns
 
   ".github/auto_assign.yml": null
   ".github/renovate.json5": |
@@ -97,15 +90,15 @@ files:
           with:
             fetch-depth: 2
         - name: Initialize CodeQL
-          uses: github/codeql-action/init@5f532563584d71fdef14ee64d17bafb34f751ce5 # renovate: tag=v1.0.26
+          uses: github/codeql-action/init@cd783c8a29bdcf5a5c79c5137889e24651fa626c # renovate: tag=v1.0.27
           continue-on-error: true
           id: initcodeql
         - name: Autobuild
           if: steps.initcodeql.outcome == 'success'
-          uses: github/codeql-action/autobuild@5f532563584d71fdef14ee64d17bafb34f751ce5 # renovate: tag=v1.0.26
+          uses: github/codeql-action/autobuild@cd783c8a29bdcf5a5c79c5137889e24651fa626c # renovate: tag=v1.0.27
         - name: Perform CodeQL Analysis
           if: steps.initcodeql.outcome == 'success'
-          uses: github/codeql-action/analyze@5f532563584d71fdef14ee64d17bafb34f751ce5 # renovate: tag=v1.0.26
+          uses: github/codeql-action/analyze@cd783c8a29bdcf5a5c79c5137889e24651fa626c # renovate: tag=v1.0.27
 
       ShiftLeft:
         runs-on: ubuntu-latest
@@ -120,7 +113,7 @@ files:
           with:
             output: reports
         - name: Upload report
-          uses: github/codeql-action/upload-sarif@5f532563584d71fdef14ee64d17bafb34f751ce5 # renovate: tag=v1.0.26
+          uses: github/codeql-action/upload-sarif@cd783c8a29bdcf5a5c79c5137889e24651fa626c # renovate: tag=v1.0.27
           with:
             sarif_file: reports
 
