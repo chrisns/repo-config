@@ -1,0 +1,113 @@
+name: "Docker build"
+on:
+  workflow_call:
+    inputs:
+      platforms:
+        required: true
+        type: string
+        default: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: none
+      checks: none
+      contents: none
+      deployments: none
+      issues: none
+      packages: write
+      pull-requests: none
+      repository-projects: none
+      security-events: none
+      statuses: none
+      id-token: none
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Semver run
+        id: semver
+        uses: lukaszraczylo/semver-generator@1.4.2
+        with:
+          config_file: .github/semver.yaml
+          repository_local: true
+
+      - name: Login to dockerhub
+        if: secrets.DOCKER_PASSWORD !== ''
+        uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7 # renovate: tag=v1.12.0
+        with:
+          username: chrisns
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Login to GitHub
+        uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7 # renovate: tag=v1.12.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: docker_meta
+        uses: docker/metadata-action@e5622373a38e60fb6d795a4421e56882f2d7a681 # renovate: tag=v3.6.2
+        with:
+          images: |
+            ${{ secrets.DOCKER_PASSWORD !== '' && github.repository }}
+            ghcr.io/${{ github.repository }}
+          flavor: |
+            latest=true
+          tags: |
+            type=raw,value=${{ steps.semver.outputs.semantic_version }}
+            type=sha,format=long
+            type=edge,branch=$repo.default_branch
+
+      - name: build+push
+        uses: docker/build-push-action@1814d3dfb36d6f84174e61f4a4b05bd84089a4b9 # renovate: tag=v2.8.0
+        with:
+          context: .
+          platforms: ${{ inputs.platforms }}
+          push: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' }}
+          tags: ${{ steps.docker_meta.outputs.tags }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
+
+    outputs:
+      tags: ${{ steps.docker_meta.outputs.tags }}
+
+  sign:
+    needs: build
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: none
+      checks: none
+      contents: none
+      deployments: none
+      issues: none
+      packages: write
+      pull-requests: none
+      repository-projects: none
+      security-events: none
+      statuses: none
+      id-token: write
+
+    steps:
+      - name: Login to dockerhub
+        if: secrets.DOCKER_PASSWORD !== ''
+        uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7 # renovate: tag=v1.12.0
+        with:
+          username: chrisns
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Login to GitHub
+        uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7 # renovate: tag=v1.12.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: sigstore/cosign-installer@116dc6872c0a067bcb78758f18955414cdbf918f # renovate: tag=v1.4.1
+      - name: Sign the images
+        run: cosign sign ${TAGS}
+        env:
+          TAGS: ${{needs.build.outputs.tags}}
+          COSIGN_EXPERIMENTAL: 1
