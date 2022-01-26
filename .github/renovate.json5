@@ -2,4 +2,4 @@
   "extends": [
     "github>chrisns/repo-config:renovate"
   ]
- }
+}
