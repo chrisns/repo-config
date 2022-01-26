@@ -20,7 +20,8 @@
     ],
     "github-actions": {
       "ignorePaths": [
-        "\\.github/workflows/security-scan.yml"
+        "\\.github/workflows/security-scan.yml",
+        "\\.github/workflows/security.yml"
       ]
     }
   }
