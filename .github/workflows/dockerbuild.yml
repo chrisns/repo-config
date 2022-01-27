@@ -97,7 +97,7 @@ jobs:
 
     steps:
       - name: Login to dockerhub
-        if: ${{ secrets.DOCKER_PASSWORD != '' }}
+        if: secrets.DOCKER_PASSWORD
         uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7 # renovate: tag=v1.12.0
         with:
           username: chrisns
