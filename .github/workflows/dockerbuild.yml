@@ -36,7 +36,7 @@ jobs:
         id: semver
         uses: lukaszraczylo/semver-generator@1.4.2
         with:
-          config_file: .github/semver.yaml
+          # config_file: .github/semver.yaml
           repository_local: true
 
       - name: Login to GitHub
