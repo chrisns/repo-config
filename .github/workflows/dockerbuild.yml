@@ -39,13 +39,6 @@ jobs:
           config_file: .github/semver.yaml
           repository_local: true
 
-      - name: Login to dockerhub
-        if: ${{ secrets.DOCKER_PASSWORD }}
-        uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7 # renovate: tag=v1.12.0
-        with:
-          username: chrisns
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
       - name: Login to GitHub
         uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7 # renovate: tag=v1.12.0
         with:
@@ -56,8 +49,8 @@ jobs:
       - id: docker_meta
         uses: docker/metadata-action@e5622373a38e60fb6d795a4421e56882f2d7a681 # renovate: tag=v3.6.2
         with:
+            # ${{ secrets.DOCKER_PASSWORD != '' && github.repository }}
           images: |
-            ${{ secrets.DOCKER_PASSWORD != '' && github.repository }}
             ghcr.io/${{ github.repository }}
           flavor: |
             latest=true
@@ -96,13 +89,6 @@ jobs:
       id-token: write
 
     steps:
-      - name: Login to dockerhub
-        if: ${{ secrets.DOCKER_PASSWORD }}
-        uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7 # renovate: tag=v1.12.0
-        with:
-          username: chrisns
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
       - name: Login to GitHub
         uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7 # renovate: tag=v1.12.0
         with:
