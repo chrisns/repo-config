@@ -40,7 +40,7 @@ jobs:
           repository_local: true
 
       - name: Login to dockerhub
-        if: secrets.DOCKER_PASSWORD !== ''
+        if: secrets.DOCKER_PASSWORD != ''
         uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7 # renovate: tag=v1.12.0
         with:
           username: chrisns
@@ -57,7 +57,7 @@ jobs:
         uses: docker/metadata-action@e5622373a38e60fb6d795a4421e56882f2d7a681 # renovate: tag=v3.6.2
         with:
           images: |
-            ${{ secrets.DOCKER_PASSWORD !== '' && github.repository }}
+            ${{ secrets.DOCKER_PASSWORD != '' && github.repository }}
             ghcr.io/${{ github.repository }}
           flavor: |
             latest=true
@@ -97,7 +97,7 @@ jobs:
 
     steps:
       - name: Login to dockerhub
-        if: secrets.DOCKER_PASSWORD !== ''
+        if: secrets.DOCKER_PASSWORD != ''
         uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7 # renovate: tag=v1.12.0
         with:
           username: chrisns
