@@ -44,7 +44,7 @@ jobs:
           repository_local: true
 
       - name: Login to GitHub
-        uses: docker/login-action@6af3c118c8376c675363897acf1757f7a9be6583 # tag=v1.13.0
+        uses: docker/login-action@bb984efc561711aaa26e433c32c3521176eae55b # tag=v1.14.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -94,7 +94,7 @@ jobs:
 
     steps:
       - name: Login to GitHub
-        uses: docker/login-action@6af3c118c8376c675363897acf1757f7a9be6583 # tag=v1.13.0
+        uses: docker/login-action@bb984efc561711aaa26e433c32c3521176eae55b # tag=v1.14.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
